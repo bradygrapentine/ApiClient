@@ -168,7 +168,6 @@ namespace ApiClient
                             break;
                     }
                 }
-                Console.WriteLine("Goodbye");
             }
         }
     }
