@@ -64,13 +64,7 @@ namespace ApiClient
                 var responseAsStream = await client.GetStreamAsync(url);
                 var joke = await JsonSerializer.DeserializeAsync<Joke>(responseAsStream);
                 Console.WriteLine();
-                Console.WriteLine($"{joke.SetUp}...");
-                Console.WriteLine();
-                Console.WriteLine($"...{joke.PunchLine}");
-                Console.WriteLine();
-                Console.WriteLine("Press Enter to continue...");
-                var userInput = Console.ReadLine();
-                Console.Clear();
+                Console.WriteLine($"{joke.SetUp} ~ ~ ~ {joke.PunchLine}");
             }
             static async void GetTenRandomJokes()
             {
@@ -81,14 +75,9 @@ namespace ApiClient
                 foreach (var joke in jokes)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine($"{joke.SetUp}...");
-                    Console.WriteLine();
-                    Console.WriteLine($"...{joke.PunchLine}");
+                    Console.WriteLine($"{joke.SetUp} ~ ~ ~ {joke.PunchLine}");
+                    Console.WriteLine("");
                 }
-                Console.WriteLine();
-                Console.WriteLine("Press Enter to continue...");
-                var userInput = Console.ReadLine();
-                Console.Clear();
             }
             // static async void GetARandomKnockKnockJoke() // This link might be busted
             // {
@@ -122,7 +111,6 @@ namespace ApiClient
             // }
             static string Menu()
             {
-                Console.Clear();
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("(1) See a random joke");
                 Console.WriteLine("(2) See ten random jokes");
@@ -132,6 +120,7 @@ namespace ApiClient
                 Console.WriteLine();
                 Console.WriteLine("Select an option and press Enter");
                 var choice = Console.ReadLine();
+                Console.Clear();
                 return choice;
             }
             static void Main(string[] args)
@@ -139,11 +128,17 @@ namespace ApiClient
                 var keepTheJokesComing = true;
                 while (keepTheJokesComing)
                 {
+                    Console.Clear();
                     var menuSelection = Menu();
                     switch (menuSelection)
                     {
                         case "1":
                             GetARandomJoke();
+                            Console.WriteLine();
+                            Console.WriteLine("Press Enter after joke generates to quit to menu:");
+                            Console.WriteLine();
+                            var userInput = Console.ReadLine();
+                            Console.Clear();
                             // var obj1 = await GetARandomJoke();
                             // Console.WriteLine($"{obj1.SetUp}...{obj1.PunchLine}");
                             // Console.WriteLine();
@@ -153,6 +148,11 @@ namespace ApiClient
                             break;
                         case "2":
                             GetTenRandomJokes();
+                            Console.WriteLine();
+                            Console.WriteLine("Press Enter after jokes generate to quit to menu:");
+                            Console.WriteLine();
+                            var userInput2 = Console.ReadLine();
+                            Console.Clear();
                             break;
                         // case "3":
                         //     GetARandomKnockKnockJoke();
@@ -161,6 +161,7 @@ namespace ApiClient
                         //     GetARandomProgrammingJoke();
                         //     break;
                         case "3":
+                            Console.Clear();
                             Console.WriteLine();
                             Console.Write("Closing application");
                             Console.WriteLine("");
